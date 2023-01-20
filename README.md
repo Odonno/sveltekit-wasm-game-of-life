@@ -1,38 +1,31 @@
-# create-svelte
+# Conway's game of life using SvelteKit + WASM in Rust
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+This repository is an example of how to bind a SvelteKit web app to a Rust library using WASM. It displays a simple Game of life.
 
-## Creating a project
+https://sveltekit-wasm-game-of-life.vercel.app/
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Dependencies
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+### JavaScript Dependencies
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+| Name                  | Version | Goal                                       |
+| --------------------- | ------- | ------------------------------------------ |
+| @sveltejs/kit         | 1.0.0   | The core framework, SvelteKit              |
+| vite-plugin-wasm-pack | 0.1.12  | A Vite plugin for handling wasm-pack crate |
 
-## Developing
+### Rust Dependencies
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+| Name         | Version | Goal                                                            |
+| ------------ | ------- | --------------------------------------------------------------- |
+| conlife      | 0.1.4   | A library that contains the Game of life logic                  |
+| wasm-bindgen | 0.2.74  | A library to handle bindings between JavaScript and WASM module |
+| web_sys      | 0.3.4   | A library to access Web APIs provided by current web browsers   |
 
-```bash
-npm run dev
+## How to deploy?
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+If you deploy this project on Vercel, you can follow the article here: https://betterprogramming.pub/deploying-a-wasm-powered-react-app-on-vercel-cf3cae2a75d6
 
-## Building
+You only have to do this:
 
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+1. Create (or copy) `build.sh` script that contains all the necessary commands (install Rust, wasm-pack, build the Rust and then the SvelteKit app)
+2. Change the Vercel deployment configuration `Build Command` to `bash build.sh`
